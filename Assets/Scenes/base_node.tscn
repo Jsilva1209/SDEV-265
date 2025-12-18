@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0pv002e5dqgw"]
+
+[ext_resource type="Script" uid="uid://thhtqq6qceq3" path="res://Assets/Scenes/base_node.gd" id="1_hk76w"]
+[ext_resource type="AudioStream" uid="uid://bvkeggagf6ha7" path="res://Assets/Audio/DefaultTheme.mp3" id="2_xr6qe"]
+[ext_resource type="Script" uid="uid://8pwpvwuakxjm" path="res://Assets/Scenes/settings.gd" id="3_xgd3l"]
+
+[node name="BaseNode" type="Node"]
+script = ExtResource("1_hk76w")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xr6qe")
+autoplay = true
+
+[node name="Settings" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_xgd3l")
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="Volume" type="HSlider" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Mute" type="CheckBox" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mute"
+
+[node name="Resolutions" type="OptionButton" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+selected = 2
+item_count = 3
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+
+[connection signal="value_changed" from="Settings/MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="Settings/MarginContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]
+[connection signal="item_selected" from="Settings/MarginContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]

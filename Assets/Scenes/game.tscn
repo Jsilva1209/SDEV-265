@@ -1,0 +1,214 @@
+[gd_scene load_steps=10 format=3 uid="uid://ca21uqhdkecpl"]
+
+[ext_resource type="Texture2D" uid="uid://bvcm5pa70bll6" path="res://Assets/Textures/felt.png" id="2_kgc4o"]
+[ext_resource type="Texture2D" uid="uid://ckitacn7wg1ey" path="res://Assets/Textures/DiamondPatternA.png" id="3_0n1xj"]
+[ext_resource type="Script" path="res://Assets/Scenes/gameScript.gd" id="3_0pyxl"]
+[ext_resource type="FontFile" uid="uid://c5ge3lijolhgo" path="res://Assets/BoldPixels.ttf" id="4_5upt8"]
+[ext_resource type="PackedScene" uid="uid://dpch8vd55wsiy" path="res://Assets/Scenes/card.tscn" id="5_4l4rb"]
+[ext_resource type="Texture2D" uid="uid://de5f75ytq5yg8" path="res://Assets/Textures/chip.png" id="5_afrvm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jx782"]
+font = ExtResource("4_5upt8")
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_pihkp"]
+font = ExtResource("4_5upt8")
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pmxs"]
+font = ExtResource("4_5upt8")
+font_size = 38
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(1.15514e-06, 0.636547, 0.362807, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kgc4o")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Pattern" type="TextureRect" parent="Background"]
+visible = false
+self_modulate = Color(0, 0, 0, 0.145098)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0n1xj")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_0pyxl")
+
+[node name="DealerPts" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 224.0
+offset_top = -124.0
+offset_right = 508.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dealer - 0"
+label_settings = SubResource("LabelSettings_jx782")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YouPts" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 224.0
+offset_top = 76.0
+offset_right = 508.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You - 0"
+label_settings = SubResource("LabelSettings_jx782")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChipCounter" type="Control" parent="Main"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -60.0
+offset_right = 206.0
+offset_bottom = -9.0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Main/ChipCounter"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 53.0
+grow_vertical = 2
+texture = ExtResource("5_afrvm")
+
+[node name="Label" type="Label" parent="Main/ChipCounter"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -141.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "2500"
+label_settings = SubResource("LabelSettings_pihkp")
+vertical_alignment = 1
+
+[node name="HitStandBtns" type="Control" parent="Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stand" type="Button" parent="Main/HitStandBtns"]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -24.0
+offset_right = 90.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Main/HitStandBtns/Stand"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.333279, 0.000683457, 0.887743, 0.627451)
+
+[node name="Label" type="Label" parent="Main/HitStandBtns/Stand"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stand"
+label_settings = SubResource("LabelSettings_5pmxs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hit" type="Button" parent="Main/HitStandBtns"]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -24.0
+offset_right = -56.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Main/HitStandBtns/Hit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.627451, 0, 0.317647, 0.627451)
+
+[node name="Label" type="Label" parent="Main/HitStandBtns/Hit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hit"
+label_settings = SubResource("LabelSettings_5pmxs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Card5" parent="Main" instance=ExtResource("5_4l4rb")]
+position = Vector2(219, 325)
